@@ -1,5 +1,6 @@
 import numpy as np
 import open3d as o3d
+import os
 
 
 def load_view_point(pcd, filename, height_, width_, img_name_, bc, normals=False):
@@ -53,3 +54,16 @@ def save_view_point(pcd, filename):
     o3d.io.write_pinhole_camera_parameters(filename, param)
     vis_.destroy_window()
 
+
+def find_2d_bb(data, vp, save_dir):
+    extrinsic = vp.extrinsic
+    intrinsic = vp.intrinsic.intrinsic_matrix
+    intrinsic = np.hstack((intrinsic, np.array([[0], [0], [0]])))
+    k = intrinsic @ extrinsic
+    for m in range(0, len(data)):
+        print('Object:', m)
+        points_3d = data[m]
+        points_3d = np.array([np.hstack((point, np.array([1]))) for point in points_3d])
+        points_2d = np.array([k @ point for point in points_3d])
+        points_2d = [[point[0] / point[2], point[1] / point[2]] for point in points_2d]
+        np.save(os.path.join(save_dir, str(m + 1)) + '.npy', points_2d)
