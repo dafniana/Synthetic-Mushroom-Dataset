@@ -66,7 +66,7 @@ for i, viewpoint in enumerate(viewpoints):
     width = data["intrinsic"]["width"]
     f.close()
     img_name = os.path.join(images_path, str(i+1) + '.jpg')
-    img_name_bb = os.path.join(images_path, str(i + 1) + 'normals.jpg')
+    img_name_bb = os.path.join(images_path, str(i + 1) + '_normals.jpg')
     colors = [[46, 34, 23], [105, 89, 73], [48, 32, 16], [36, 24, 11],
               [43, 32, 20], [92, 64, 51], [20, 18, 15], [46, 34, 23]]
     color = colors[random.randint(0, 7)]
