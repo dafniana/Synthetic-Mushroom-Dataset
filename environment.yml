@@ -240,4 +240,3 @@ dependencies:
     - typing-inspect==0.8.0
     - usort==1.0.5
     - werkzeug==2.2.2
-prefix: /home/dafni/miniconda3/envs/synthetic
