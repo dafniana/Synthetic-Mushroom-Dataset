@@ -1,5 +1,5 @@
 from share import *
-import config
+from utils import config
 import cv2
 import os
 import json
@@ -8,13 +8,13 @@ import numpy as np
 import torch
 import random
 import argparse
-from MushroomDataset import MushroomDataset
+from utils.MushroomDataset import MushroomDataset
 from pytorch_lightning import seed_everything
 from annotator.util import resize_image, HWC3
 from annotator.hed import HEDdetector
 from cldm.model import create_model, load_state_dict
 from cldm.ddim_hacked import DDIMSampler
-from realistic import *
+from utils.realistic import *
 
 
 def get_map(input_image, detect_resolution=384, image_resolution=512):
